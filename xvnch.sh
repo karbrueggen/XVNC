@@ -11,15 +11,15 @@ if [ "$X11" == "" ]; then
 	xhost +
 	x11vnc -auth guess -display :0.0 -bg -reopen -forever > /tmp/x11vncstart.$(date "+%Y%m%d%H%M%S").txt 2>&1
 	
-	if [ "$X11" == "" ]; then
-	echo "Alle Dienste gestartet."
+	if X11=$(pgrep x11vnc); then
+	   echo "Alle Dienste gestartet. ($X11)"
 
 	else 
-	echo "hmm... something smells fishy..."
-   fi
+	   echo "hmm... something smells fishy..."
+        fi
 
 else 
-	printf "Es l\Ufffffffft bereits alles N\Uffffffffe ($X11) :-)\n"
+	printf "Es läuft bereits alles Nötige ($X11) :-)\n"
 
 fi
 
